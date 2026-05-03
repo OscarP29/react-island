@@ -1,0 +1,62 @@
+---
+title: Quick Start
+description: Install Island and show your first toast in minutes.
+---
+
+import { Step, Steps } from "fumadocs-ui/components/steps"
+import { Tab, Tabs } from "fumadocs-ui/components/tabs"
+
+## Installation
+
+<Steps>
+<Step>
+
+### Install the package
+
+<Tabs items={["npm", "pnpm", "bun"]}>
+	<Tab value="npm">```npm install react-island ```</Tab>
+</Tabs>
+
+</Step>
+<Step>
+
+### Add the provider
+
+Mount `<ViewIslands />` once at the root of your app.
+
+```tsx title="app.tsx"
+import { ViewIslands } from "island"
+
+export default function App() {
+	return (
+		<div>
+			<ViewIslands />
+		</div>
+	)
+}
+```
+
+</Step>
+<Step>
+
+### Show your first island
+
+```tsx title="app.tsx"
+import { ViewIslands } from "island"
+import { island } from "island"
+
+export default function App() {
+	const showIsland = () => island.success("Hi! Mom")
+	return (
+		<div>
+			<ViewIslands />
+			<button onclick={showIsland}>Show Island</button>
+		</div>
+	)
+}
+```
+
+</Step>
+</Steps>
+
+## Next steps

@@ -1,0 +1,45 @@
+{
+	"name": "react-island",
+	"version": "1.0.1",
+	"description": "React island notification",
+	"repository": "https://github.com/OscarP29/react-island",
+	"main": "./dist/index.js",
+	"workspaces": [
+		"playground"
+	],
+	"module": "./dist/index.mjs",
+	"types": "./dist/index.d.ts",
+	"exports": {
+		".": {
+			"types": "./dist/index.d.ts",
+			"import": "./dist/index.mjs",
+			"require": "./dist/index.js"
+		}
+	},
+	"files": [
+		"dist"
+	],
+	"sideEffects": false,
+	"scripts": {
+		"build": "tsup",
+		"dev": "tsup --watch",
+		"prepublishOnly": "npm run build"
+	},
+	"keywords": [
+		"react",
+		"notifications",
+		"Island"
+	],
+	"author": "OscarP29",
+	"license": "MIT",
+	"devDependencies": {
+		"@types/react": "^19.2.14",
+		"prettier": "^3.8.3",
+		"react": "^19.2.5",
+		"tsup": "^8.5.1",
+		"typescript": "^6.0.3"
+	},
+	"dependencies": {
+		"goober": "^2.1.18"
+	}
+}

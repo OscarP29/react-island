@@ -1,0 +1,60 @@
+---
+title: Inicio Rapido
+description: Instala Island y muestra tu primera notificación en minutos.
+---
+
+import { Step, Steps } from "fumadocs-ui/components/steps"
+import { Tab, Tabs } from "fumadocs-ui/components/tabs"
+
+## Instalación
+
+<Steps>
+<Step>
+
+### Instala el paquete
+
+<Tabs items={["npm", "pnpm", "bun"]}>
+	<Tab value="npm">```npm install react-island ```</Tab>
+</Tabs>
+
+</Step>
+<Step>
+
+### Agrega el provider
+
+Monta `<ViewIslands />` una vez en la raíz de tu aplicación.
+
+```tsx title="app.tsx"
+import { ViewIslands } from "island"
+
+export default function App() {
+	return (
+		<div>
+			<ViewIslands />
+		</div>
+	)
+}
+```
+
+</Step>
+<Step>
+
+### Muestra tu primera island
+
+```tsx title="app.tsx"
+import { ViewIslands } from "island"
+import { island } from "island"
+
+export default function App() {
+	const showIsland = () => island.success("Hi! Mom")
+	return (
+		<div>
+			<ViewIslands />
+			<button onclick={showIsland}>Show Island</button>
+		</div>
+	)
+}
+```
+
+</Step>
+</Steps>

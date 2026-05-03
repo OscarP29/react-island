@@ -1,0 +1,95 @@
+---
+title: island()
+description: La función principal. Llámala desde cualquier lugar para activar una notificación.
+---
+
+`island()` es una función simple. Impórtala y llámala desde cualquier lugar de tu aplicación para activar una notificación. Recuerda agregar `<ViewIslands />` antes de usarla.
+
+## Tipos de islands
+
+### Normal
+
+```ts
+island("Archivo guardado")
+```
+
+El island más básico, no tiene ícono.
+
+### Success
+
+```ts
+island.success("¡Todo listo!")
+```
+
+Muestra un island con un ícono de éxito animado.
+
+### Error
+
+```ts
+island.error("Acceso denegado")
+```
+
+Muestra un island con un ícono de error animado.
+
+### Loading
+
+```ts
+island.loading("Subiendo…")
+```
+
+Muestra un island con un indicador de carga animado.
+
+Cada llamada retorna un `id`. Si no asignas uno, Island lo genera automáticamente. El `id` puede usarse para actualizar islands existentes, por ejemplo islands de carga.
+
+```ts
+const id = island.loading("Subiendo…")
+
+// más tarde…
+island.success("¡Listo!", { id })
+```
+
+## Descartar islands
+
+El `id` también puede usarse para descartar islands manualmente en cualquier momento. Esto se hace con el método `.dismiss`.
+
+```ts
+island.loading("Subiendo…", { id: "upload" })
+
+// más tarde…
+island.dismiss("upload")
+```
+
+## Opciones
+
+| Opción         | Tipo      | Descripción                                                                              |
+| -------------- | --------- | ---------------------------------------------------------------------------------------- |
+| `id`           | `string`  | ID personalizado. Útil para actualizar o descartar un island.                            |
+| `viewIslandId` | `string`  | Identificador del ViewIsland donde se monta el island, útil para múltiples contenedores. |
+| `duration`     | `number`  | Tiempo en milisegundos antes de que se descarte automáticamente.                         |
+| `sound`        | `boolean` | Activa o desactiva la reproducción de sonido al mostrar la notificación.                 |
+| `soundUrl`     | `string`  | Sonido personalizado que se reproduce al mostrar el island.                              |
+| `theme`        | `string`  | Permite forzar el tema `light` o `dark` para esta notificación.                          |
+
+## Duración por defecto
+
+Todos los tipos de `island` tienen una duración por defecto. Estas pueden modificarse en la configuración del island o globalmente a través de `ViewIsland`.
+
+| Tipo      | Duración |
+| --------- | -------- |
+| `normal`  | 4000     |
+| `success` | 4000     |
+| `loading` | 4000     |
+| `error`   | 4000     |
+
+## Ejemplo de configuración
+
+```ts
+island.success("Todo ha salido bien", {
+	id: "miId",
+	duration: 5000,
+	sound: true,
+	soundUrl: "./assets/miSonido.mp3",
+	theme: "light",
+	viewIslandId: "default",
+})
+```

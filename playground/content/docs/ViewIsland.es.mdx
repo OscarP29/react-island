@@ -1,0 +1,106 @@
+---
+title: ViewIslands
+description: El componente que renderiza las notificaciones. Debe declararse al menos una vez para que island() funcione.
+---
+
+`<ViewIslands />` es el componente encargado de montar y renderizar todas las notificaciones en pantalla. Debes incluirlo al menos una vez en tu aplicación, normalmente en la raíz de tu proyecto.
+
+```tsx title="app.tsx"
+import { ViewIslands } from "island"
+
+export default function App() {
+	return (
+		<div>
+			<ViewIslands />
+		</div>
+	)
+}
+```
+
+## Props
+
+| Prop            | Tipo                  | Descripción                                                                |
+| --------------- | --------------------- | -------------------------------------------------------------------------- |
+| `viewIslandsId` | `string`              | Identificador único del contenedor. Útil cuando usas múltiples instancias. |
+| `position`      | `Position`            | Posición en pantalla donde aparecen las notificaciones.                    |
+| `islandConfig`  | `DefaultIslandConfig` | Configuración global aplicada a todas las islands de este contenedor.      |
+
+## Position
+
+Los valores disponibles para `position` son:
+
+| Valor           | Descripción           |
+| --------------- | --------------------- |
+| `top-left`      | Arriba a la izquierda |
+| `top-center`    | Arriba al centro      |
+| `top-right`     | Arriba a la derecha   |
+| `bottom-left`   | Abajo a la izquierda  |
+| `bottom-center` | Abajo al centro       |
+| `bottom-right`  | Abajo a la derecha    |
+
+```tsx
+<ViewIslands position="bottom-right" />
+```
+
+## islandConfig
+
+`islandConfig` permite definir valores por defecto para todas las islands que renderiza este contenedor. Puedes declarar una configuración global, configuraciones específicas por tipo, o ambas a la vez.
+
+### Global
+
+Aplica a todos los tipos de island.
+
+```tsx
+<ViewIslands
+	islandConfig={{
+		duration: 5000,
+		sound: true,
+		theme: "dark",
+	}}
+/>
+```
+
+### Por tipo
+
+Aplica solo al tipo indicado, sobreescribiendo la configuración global si hay conflicto.
+
+```tsx
+<ViewIslands
+	islandConfig={{
+		duration: 4000,
+		loading: {
+			duration: Infinity,
+			sound: false,
+		},
+		error: {
+			duration: 8000,
+			sound: true,
+			soundUrl: "./assets/error.mp3",
+		},
+	}}
+/>
+```
+
+<Callout type="info">
+	La configuración por tipo tiene prioridad sobre la configuración global, y a su vez la configuración pasada
+	directamente a `island()` tiene prioridad sobre ambas.
+</Callout>
+
+## Múltiples contenedores
+
+Puedes declarar más de un `<ViewIslands />` en tu aplicación asignando un `viewIslandsId` a cada uno. Luego, al llamar a `island()`, usa la opción `viewIslandId` para dirigir la notificación al contenedor correcto.
+
+```tsx
+<ViewIslands viewIslandsId="main" position="top-right" />
+<ViewIslands viewIslandsId="sidebar" position="bottom-left" />
+```
+
+```ts
+island.success("Guardado", { viewIslandId: "main" })
+island.error("Error de red", { viewIslandId: "sidebar" })
+```
+
+<Callout type="warn">
+	Si no declaras ningún `<ViewIslands />
+	`, las llamadas a `island()` no producirán ningún efecto visible.
+</Callout>

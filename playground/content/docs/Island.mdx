@@ -1,0 +1,95 @@
+---
+title: island()
+description: The core function. Call it from anywhere to trigger a notification.
+---
+
+`island()` is a simple function. Import it and call it from anywhere in your application to activate a notification, remember to add `<ViewIslands />` first before using
+
+## Types of islands
+
+### Normal
+
+```ts
+island("File saved")
+```
+
+the most basic island do not have an icon.
+
+### success
+
+```ts
+island.success("All done!")
+```
+
+Shows an island with an animated success icon.
+
+### Error
+
+```ts
+island.error("Access denied")
+```
+
+Shows an island with an animated error icon.
+
+### Loading
+
+```ts
+island.loading("Uploading…")
+```
+
+Shows an island with an animated loading indicator.
+
+Each call returns an `id`. If you don't assign one, Island generates it for you. The `id` can be used to update existing islands, for example loading islands.
+
+```ts
+const id = island.loading("Uploading…")
+
+// later…
+island.success("Done!", { id })
+```
+
+## Dismiss Islands
+
+This `id` can also be used to discard islands manually at any time when you need it. This is done using the `.dismiss` method
+
+```ts
+island.loading("Uploading…", { id: "upload" })
+
+// later…
+island.dismiss("upload")
+```
+
+## Options
+
+| Option         | Type      | Description                                                                               |
+| -------------- | --------- | ----------------------------------------------------------------------------------------- |
+| `id`           | `string`  | Custom ID. Useful for updating or dismissing a toast.                                     |
+| `viewIslandId` | `string`  | identifier of the viewIsland where the island is mounted, useful for multiple containers. |
+| `duration`     | `number`  | Time in milliseconds before auto-dismiss.                                                 |
+| `sound`        | `boolean` | Turn sound playback on or off when displaying the notification.                           |
+| `soundUrl`     | `string`  | Custom sound that plays when the island is displayed..                                    |
+| `theme`        | `string`  | VAllows you to force the `light` or `dark` theme for this notification.                   |
+
+## Default Duration
+
+All `island` types have a default duration, these can be modified in the island configuration or globally through `ViewIsland`
+
+| Type      | Duration |
+| --------- | -------- |
+| `normal`  | 4000     |
+| `success` | 4000     |
+| `loading` | 4000     |
+| `error`   | 4000     |
+
+## Example Config
+
+```ts
+island.success("Everything has gone well", {
+	id: "myId",
+	duration: 5000,
+	sound: true,
+	soundUrl: "./assets/mySong.mp3",
+	theme: "light",
+	viewIslandId: "default",
+})
+```
