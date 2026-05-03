@@ -5,6 +5,9 @@ import { Metadata } from "next"
 
 export const metadata: Metadata = {
 	title: "Island",
+	verification: {
+		google: "d3zzaEkEZJNB7GEGpwkYfGoZhHFrCEr2DBkHNb993sQ",
+	},
 }
 
 export default async function RootLayout({
