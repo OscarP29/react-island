@@ -11,8 +11,7 @@ npm install react-island
 ## Basic Usage
 
 ```tsx
-import { ViewIslands } from "island"
-import { island } from "island"
+import { ViewIslands, island } from "island"
 
 export default function App() {
 	const showIsland = () => island.success("Hi! Mom")

@@ -18,7 +18,7 @@ export default function IslandBar({ visible, message, type, theme }: IslandBarPr
 	const Icon = Icons[type]
 	return (
 		<IslandBarBase className={visible ? "enter" : "exit"} theme={theme}>
-			{Icon && <Icon />}
+			{Icon && <Icon theme={theme} />}
 			<Text className={visible ? "enter" : ""} theme={theme}>
 				{message}
 			</Text>
