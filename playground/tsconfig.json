@@ -17,7 +17,7 @@
 		"paths": {
 			"@/*": ["./*"],
 			"collections/*": ["./.source/*"],
-			"react-island-dev": ["../src/index.ts"]
+			"react-island-dev": ["../dist/index.mjs"]
 		},
 		"plugins": [
 			{

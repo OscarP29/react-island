@@ -33,7 +33,7 @@ function getPositionStyle(position: Position): React.CSSProperties {
 }
 //component responsible for displaying the islands
 export function ViewIslands({ position = "top-center", viewIslandsId, islandConfig }: ViewIslandsProps) {
-	const { islands, handler } = useIslands(islandConfig, viewIslandsId)
+	const { islands } = useIslands(islandConfig, viewIslandsId)
 	const positionStyle = getPositionStyle(position)
 
 	return (

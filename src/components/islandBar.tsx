@@ -1,4 +1,3 @@
-import { keyframes, styled } from "goober"
 import IconSuccess from "./iconSuccess"
 import IconError from "./iconError"
 import IconLoading from "./iconLoading"
@@ -15,9 +14,16 @@ export default function IslandBar({ visible, message, type, theme }: IslandBarPr
 		normal: undefined,
 	}
 
+	const isError = type === "error"
 	const Icon = Icons[type]
+
 	return (
-		<IslandBarBase className={visible ? "enter" : "exit"} theme={theme}>
+		<IslandBarBase
+			className={visible ? "enter" : "exit"}
+			theme={theme}
+			role={isError ? "alert" : "status"}
+			aria-live={isError ? "assertive" : "polite"}
+			aria-atomic="true">
 			{Icon && <Icon theme={theme} />}
 			<Text className={visible ? "enter" : ""} theme={theme}>
 				{message}

@@ -1,6 +1,6 @@
 {
 	"name": "react-island",
-	"version": "1.0.1",
+	"version": "1.0.2",
 	"description": "React island notification",
 	"repository": "https://github.com/OscarP29/react-island",
 	"main": "./dist/index.js",

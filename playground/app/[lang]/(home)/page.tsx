@@ -13,7 +13,9 @@ export default function HomePage({ params }: Props) {
 
 	return (
 		<div className="flex flex-col items-center justify-center flex-1 px-4 py-20 text-center">
-			<ViewIslands islandConfig={{ theme: theme as "dark" | "light" }} />
+			<ViewIslands
+				islandConfig={{ theme: theme as "dark" | "light", sound: true, soundUrl: "/sound/newNotification.mp3" }}
+			/>
 			{/* Heading */}
 			<h1 className="mb-4 text-6xl font-bold tracking-tight text-fd-foreground sm:text-7xl">Island</h1>
 

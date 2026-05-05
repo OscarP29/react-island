@@ -68,5 +68,5 @@ export function useIslands(configIsland?: DefaultIslandConfig, viewIslandId: str
 		})
 	}, [islands, addToRemoveQueue])
 
-	return { islands, handler: {} }
+	return { islands }
 }
