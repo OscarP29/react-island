@@ -75,8 +75,8 @@ export default function HomePage({ params }: Props) {
 
 				{/* Code snippet hint */}
 				<div className="mt-5 rounded-md bg-fd-background border border-fd-border px-4 py-3 font-mono text-xs text-fd-muted-foreground">
-					<span className="text-green-500">import</span> <span className="text-fd-foreground">{"{ toast }"}</span>{" "}
-					<span className="text-green-500">from</span> <span className="text-amber-400">'island'</span>
+					<span className="text-green-500">import</span> <span className="text-fd-foreground">{"{ island }"}</span>{" "}
+					<span className="text-green-500">from</span> <span className="text-amber-400">'react-island'</span>
 				</div>
 			</div>
 		</div>
